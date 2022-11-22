@@ -10,7 +10,7 @@
   justify-content: space-around;
   height: auto;
   margin: 20px;
-  padding: 20px;
+  padding: 10px;
   width: 250px;
   text-align: center;
   background: #83aec3;
@@ -24,13 +24,13 @@
   border-radius: 10px;
 }
 
-.movie_title {
+/* .movie_title {
   color: white;
   font-family: "Amaranth", sans-serif;
   font-size: 20px;
   font-weight: bold;
   padding: 15px 0px;
-}
+} */
 
 .movie-card {
   transition: transform 0.2s;
@@ -53,6 +53,18 @@
   opacity: 0;
   bottom: 0;
   font-size: 20px;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
+  box-sizing: border-box;
+  color: white;
+  border-radius: 20px;
+}
+
+.movie-title {
+  color: white;
+  font-size: 25px;
+  padding: 20px;
+}
+
+.overview {
 }

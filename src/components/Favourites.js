@@ -1,23 +1,18 @@
 import PropTypes from "prop-types";
 import React from "react";
-import MovieCard from "./MovieCard";
-
+import FavouriteMovieCard from "./FavouriteMovieCard";
 import "../styles/Movies.css";
 
-const Movies = ({
-  searchResults,
+const Favourites = ({
   favouriteComponent,
   handleFavouritesClick,
   favouriteMovies,
   favouriteIcon,
-  watchLaterList,
-  handleWatchLaterClick,
-  watchLaterComponent,
 }) => (
   <div className="search-results">
-    {searchResults &&
-      searchResults.map((movie) => (
-        <MovieCard
+    {favouriteMovies &&
+      favouriteMovies.map((movie) => (
+        <FavouriteMovieCard
           posterPath={movie.poster_path}
           key={movie.id}
           title={movie.title}
@@ -29,24 +24,17 @@ const Movies = ({
           favouriteComponent={favouriteComponent}
           handleFavouritesClick={handleFavouritesClick}
           movie={movie}
-          favouriteIcon={favouriteIcon}
           favouriteMovies={favouriteMovies}
-          watchLaterList={watchLaterList}
-          handleWatchLaterClick={handleWatchLaterClick}
-          watchLaterComponent={watchLaterComponent}
+          favouriteIcon={favouriteIcon}
         />
       ))}
   </div>
 );
-Movies.propTypes = {
+Favourites.propTypes = {
   favouriteComponent: PropTypes.func.isRequired,
-  watchLaterComponent: PropTypes.func.isRequired,
   handleFavouritesClick: PropTypes.func.isRequired,
-  watchLaterList: PropTypes.shape(),
-  favouriteMovies: PropTypes.shape(),
   favouriteIcon: PropTypes.shape(),
-  handleWatchLaterClick: PropTypes.func.isRequired,
-  searchResults: PropTypes.arrayOf(
+  favouriteMovies: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
@@ -60,11 +48,9 @@ Movies.propTypes = {
   ),
 };
 
-Movies.defaultProps = {
+Favourites.defaultProps = {
   favouriteMovies: [],
-  searchResults: [],
   favouriteIcon: [],
-  watchLaterList: [],
 };
 
-export default Movies;
+export default Favourites;

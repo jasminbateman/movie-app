@@ -5,7 +5,7 @@ import FavouriteIcon from "./FavouriteIcon";
 
 const URL_IMG = "https://image.tmdb.org/t/p/w342";
 
-const MovieCard = (props) => {
+const FavouriteMovieCard = (props) => {
   const {
     overview,
     popularity,
@@ -17,19 +17,14 @@ const MovieCard = (props) => {
     handleFavouritesClick,
     movie,
     favouriteMovies,
-    handleWatchLaterClick,
   } = props;
 
   // eslint-disable-next-line react/destructuring-assignment
   const FavouriteComponent = props.favouriteComponent;
-  // eslint-disable-next-line react/destructuring-assignment
-  const WatchLaterComponent = props.watchLaterComponent;
   return (
     <div className="movie-card">
       <div className="favourite-icon">
-        {favouriteMovies.some((favMovie) => favMovie.id === movie.id) && (
-          <FavouriteIcon />
-        )}
+        {favouriteMovies.includes(movie) && <FavouriteIcon />}
       </div>
       <div className="poster_path">
         <img
@@ -51,21 +46,13 @@ const MovieCard = (props) => {
       >
         <FavouriteComponent />
       </div>
-      <div
-        onClick={() => handleWatchLaterClick(movie)}
-        role="presentation"
-        className="overlay d-flex align-items-center justify-content-center"
-      >
-        <WatchLaterComponent />
-      </div>
     </div>
   );
 };
 
-MovieCard.propTypes = {
+FavouriteMovieCard.propTypes = {
+  //   id: PropTypes.number.isRequired,
   favouriteComponent: PropTypes.func.isRequired,
-  watchLaterComponent: PropTypes.func.isRequired,
-  handleWatchLaterClick: PropTypes.func.isRequired,
   favouriteMovies: PropTypes.shape(),
   handleFavouritesClick: PropTypes.func.isRequired,
   movie: PropTypes.shape().isRequired,
@@ -76,10 +63,12 @@ MovieCard.propTypes = {
   posterPath: PropTypes.string.isRequired,
   voteAverage: PropTypes.number.isRequired,
   voteCount: PropTypes.number.isRequired,
+  //   userId: PropTypes.string.isRequired,
+  //   onSaveMovie: PropTypes.func.isRequired,
 };
 
-MovieCard.defaultProps = {
+FavouriteMovieCard.defaultProps = {
   favouriteMovies: [],
 };
 
-export default MovieCard;
+export default FavouriteMovieCard;

@@ -5,7 +5,7 @@ import FavouriteIcon from "./FavouriteIcon";
 
 const URL_IMG = "https://image.tmdb.org/t/p/w342";
 
-const MovieCard = (props) => {
+const WatchLaterCard = (props) => {
   const {
     overview,
     popularity,
@@ -27,9 +27,7 @@ const MovieCard = (props) => {
   return (
     <div className="movie-card">
       <div className="favourite-icon">
-        {favouriteMovies.some((favMovie) => favMovie.id === movie.id) && (
-          <FavouriteIcon />
-        )}
+        {favouriteMovies.includes(movie) && <FavouriteIcon />}
       </div>
       <div className="poster_path">
         <img
@@ -62,7 +60,8 @@ const MovieCard = (props) => {
   );
 };
 
-MovieCard.propTypes = {
+WatchLaterCard.propTypes = {
+  //   id: PropTypes.number.isRequired,
   favouriteComponent: PropTypes.func.isRequired,
   watchLaterComponent: PropTypes.func.isRequired,
   handleWatchLaterClick: PropTypes.func.isRequired,
@@ -76,10 +75,12 @@ MovieCard.propTypes = {
   posterPath: PropTypes.string.isRequired,
   voteAverage: PropTypes.number.isRequired,
   voteCount: PropTypes.number.isRequired,
+  //   userId: PropTypes.string.isRequired,
+  //   onSaveMovie: PropTypes.func.isRequired,
 };
 
-MovieCard.defaultProps = {
+WatchLaterCard.defaultProps = {
   favouriteMovies: [],
 };
 
-export default MovieCard;
+export default WatchLaterCard;
